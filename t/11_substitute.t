@@ -6,6 +6,7 @@
 # change 'tests => 1' to 'tests => last_test_to_print';
 
 use Test::More skip_all => 'for some reason, this test fail on some platform';
+#use Test::More tests => 1;
 use Pod::L10N::Html;
 
 sub diff {
