@@ -61,6 +61,7 @@ my %alttext;
 my @deleted;
 
 my $Encoding;
+my $Encoding_Header;
 
 _init_globals();
 
@@ -115,7 +116,7 @@ sub _init_globals {
     %Local_Items = ();
     $Is83 = $^O eq 'dos';       # Is it an 8.3 filesystem?
 
-    $Encoding = '';		# encoding of pod
+    $Encoding = 'utf-8';		# encoding of pod
 }
 
 #
@@ -223,7 +224,7 @@ sub pod2html {
 	TITLE_SEARCH: {
  	    for (my $i = 0; $i < @poddata; $i++) {
 		if ($poddata[$i] =~ /^=head1\s*NAME\b/m) {
- 		    for my $para ( @poddata[$i+4, $i+4] ) {
+ 		    for my $para ( @poddata[$i+4, $i+1] ) {
 			last TITLE_SEARCH
 			    if ($Title) = $para =~ /(\S+\s+-+.*\S)/s;
 		    }
@@ -264,8 +265,7 @@ sub pod2html {
 
     for (my $i = 0; $i < @poddata; $i++) {
 	if ($poddata[$i] =~ /^=encoding\s*([-_\w]*)/m) {
-	    $Encoding =
-	      '<meta http-equiv="content-type" content="text/html; charset=' . $1 . '" />';
+	    $Encoding = $1;
 	    last;
 	}
     }
@@ -284,7 +284,7 @@ END_OF_BLOCK
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>$Title</title>$csslink
-$Encoding
+<meta http-equiv="content-type" content="text/html; charset=$Encoding" />
 <link rev="made" href="mailto:$Config{perladmin}" />
 </head>
 
