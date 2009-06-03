@@ -1,7 +1,7 @@
 # auto-generated shipit config file.
 steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeDist, UploadCPAN
 
-# svn.tagpattern = Pod-L10N-%v
+svn.tagpattern = Pod-L10N-%v
 # svn.tagpattern = MyProj-%v
 # svn.tagpattern = http://code.example.com/svn/tags/MyProj-%v
 
