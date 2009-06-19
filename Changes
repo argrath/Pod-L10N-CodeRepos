@@ -1,5 +1,7 @@
 Revision history for Perl extension Pod::L10N.
 
+	- adjust test for pre-5.8
+
 0.04    Thu Jun  5 18:53:26 JST 2009
 
 	- add pod
